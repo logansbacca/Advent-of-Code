@@ -47,12 +47,10 @@ func main() {
 
 	}
 
-	part2(myscore,theyscore,j)
+	part2(myscore, theyscore, j)
 }
 
-
-
-func part2(me []string, them []string,j int) {
+func part2(me []string, them []string, j int) {
 
 	mp := make(map[string]int)
 	mp["A"] = 1
@@ -96,7 +94,6 @@ func part2(me []string, them []string,j int) {
 
 		//win
 
-
 		//Rock defeats Scissors, Scissors defeats Paper, and Paper defeats Rock.
 		//A for Rock, B for Paper, and C for Scissors.
 		if mine == 3 {
@@ -113,7 +110,7 @@ func part2(me []string, them []string,j int) {
 				total += 6
 			}
 		}
-		
+
 	}
 	fmt.Println(total)
 }
