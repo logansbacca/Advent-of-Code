@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -24,7 +23,7 @@ func main() {
 
 		if len(inThrees) == 3 {
 			l = threeLines(inThrees)
-			inThrees = nil 
+			inThrees = nil
 			if unicode.IsLower(l) {
 				for i, v := range alfabeto {
 					if l == v {
@@ -41,9 +40,9 @@ func main() {
 					}
 				}
 			}
-			
+
 		}
-		
+
 	}
 	fmt.Println(tot)
 }
