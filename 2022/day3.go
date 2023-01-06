@@ -18,34 +18,45 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 	"unicode"
 )
 
 func main() {
-	var tot int
+	var l rune
+	var inThrees []string
+	var tot = 0
 	alfabeto := "abcdefghijklmnopqrstuvwxyz"
 	alfabeto2 := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		line := scanner.Text()
-		l := spuria(line)
-		if unicode.IsLower(l) {
-			for i, v := range alfabeto {
-				if l == v {
-					tot += i + 1
-					break
-				}
-			}
-		}else {
-			for i, v := range alfabeto2 {
-				if l == v {
-					tot += 26 + i
-					tot++
-					break
-				}
-			}
+		if len(inThrees) < 3 {
+			inThrees = append(inThrees, line)
 		}
 
+		if len(inThrees) == 3 {
+			l = threeLines(inThrees)
+			inThrees = nil 
+			if unicode.IsLower(l) {
+				for i, v := range alfabeto {
+					if l == v {
+						tot += i + 1
+						break
+					}
+				}
+			} else {
+				for i, v := range alfabeto2 {
+					if l == v {
+						tot += 26 + i
+						tot++
+						break
+					}
+				}
+			}
+			
+		}
+		
 	}
 	fmt.Println(tot)
 }
@@ -66,4 +77,13 @@ func spuria(s string) rune {
 	}
 	return shared
 
+}
+
+func threeLines(lines []string) (secondRes rune) {
+	for _, v := range lines[0] {
+		if strings.Contains(lines[1], string(v)) && strings.Contains(lines[2], string(v)) {
+			secondRes = v
+		}
+	}
+	return secondRes
 }
